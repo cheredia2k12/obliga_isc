@@ -1,2 +1,5 @@
-Esto es un readme
-bla bla bla
+Esto es un README
+
+Aca pondremos info sobre el proyecto
+
+
