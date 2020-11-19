@@ -4,4 +4,4 @@ secretGenerator:
   - password=Obligatorio_isc_2020
 resources:
   - mysql-deployment.yaml
-  - wordpress-deployment.yaml
+  - ecomm-deployment.yaml
