@@ -1,7 +1,4 @@
 secretGenerator:
 - name: mysql-pass
   literals:
-  - password=Obligatorio_isc_2020
-resources:
-  - mysql-deployment.yaml
-  - ecomm-deployment.yaml
+  - password=YOUR_PASSWORD
