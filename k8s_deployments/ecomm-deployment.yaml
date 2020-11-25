@@ -45,7 +45,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: cheredia2k12/ecomm:latest
+      - image: php:latest
         name: ecomm
         env:
         - name: ecomm_DB_HOST
