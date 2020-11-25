@@ -1,4 +1,7 @@
 secretGenerator:
 - name: mysql-pass
   literals:
-  - password=YOUR_PASSWORD
+  - password=testttttt
+resources:
+  - ecomm-deployment.yaml
+  - mysql-deployment.yaml
