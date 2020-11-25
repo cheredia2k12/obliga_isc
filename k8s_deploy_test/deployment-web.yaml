@@ -28,11 +28,11 @@ spec:
               key: password
         ports:
         - containerPort: 80
-        volumeMounts:
-        - mountPath: /var/www/html
-          name: ecomm-persistent-storage
-      restartPolicy: Always          
-      volumes:
-      - name: ecomm-persistent-storage
-        persistentVolumeClaim:
-          claimName: wp-pv-claim
+#        volumeMounts:
+#        - mountPath: /var/www/html
+#          name: ecomm-persistent-storage
+#      restartPolicy: Always          
+#      volumes:
+#      - name: ecomm-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: wp-pv-claim
