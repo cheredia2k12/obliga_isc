@@ -45,7 +45,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: wordpress:4.8-apache
+      - image: cheredia2k12/ecomm
         name: ecomm
         env:
         - name: ecomm_DB_HOST
