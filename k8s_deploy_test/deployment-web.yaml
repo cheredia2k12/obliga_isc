@@ -1,39 +1,37 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecomm
+  name: ecomm-deploy
   labels:
     app: ecomm
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: ecomm
-      tier: frontend
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
         app: ecomm
-        tier: frontend
     spec:
       containers:
-      - image: cheredia2k12/ecomm:latest
-        name: ecomm
+      - name: php-apache
+        image: cheredia2k12/ecomm:latest
+        imagePullPolicy: Always
         env:
-        - name: DB_HOST
+        - name: ecomm_DB_HOST
           value: ecomm-mysql
-        - name: DB_PASSWORD
+        - name: ecomm_DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-pass
               key: password
         ports:
         - containerPort: 80
-          name: ecomm
         volumeMounts:
-        - name: ecomm-persistent-storage
-          mountPath: /var/www/html
+        - mountPath: /var/www/html
+          name: ecomm-persistent-storage
+      restartPolicy: Always          
       volumes:
       - name: ecomm-persistent-storage
         persistentVolumeClaim:
