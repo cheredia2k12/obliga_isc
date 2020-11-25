@@ -19,9 +19,9 @@ spec:
         image: cheredia2k12/ecomm:latest
         imagePullPolicy: Always
         env:
-        - name: ecomm_DB_HOST
+        - name: DB_HOST
           value: ecomm-mysql
-        - name: ecomm_DB_PASSWORD
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-pass
