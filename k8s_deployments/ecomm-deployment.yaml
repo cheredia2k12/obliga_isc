@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress
+  name: ecomm
   labels:
-    app: wordpress
+    app: ecomm
 spec:
   ports:
     - port: 80
   selector:
-    app: wordpress
+    app: ecomm
     tier: frontend
   type: LoadBalancer
 ---
@@ -17,7 +17,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wp-pv-claim
   labels:
-    app: wordpress
+    app: ecomm
 spec:
   accessModes:
     - ReadWriteOnce
@@ -28,40 +28,40 @@ spec:
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: wordpress
+  name: ecomm
   labels:
-    app: wordpress
+    app: ecomm
 spec:
   selector:
     matchLabels:
-      app: wordpress
+      app: ecomm
       tier: frontend
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: wordpress
+        app: ecomm
         tier: frontend
     spec:
       containers:
-      - image: wordpress:4.8-apache
-        name: wordpress
+      - image: cheredia2k12/ecomm:latest
+        name: ecomm
         env:
-        - name: WORDPRESS_DB_HOST
-          value: wordpress-mysql
-        - name: WORDPRESS_DB_PASSWORD
+        - name: ecomm_DB_HOST
+          value: ecomm-mysql
+        - name: ecomm_DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-pass
               key: password
         ports:
         - containerPort: 80
-          name: wordpress
+          name: ecomm
         volumeMounts:
-        - name: wordpress-persistent-storage
+        - name: ecomm-persistent-storage
           mountPath: /var/www/html
       volumes:
-      - name: wordpress-persistent-storage
+      - name: ecomm-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
