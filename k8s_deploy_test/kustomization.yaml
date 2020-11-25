@@ -5,3 +5,7 @@ secretGenerator:
 resources:
   - deployment-mysql.yaml
   - deployment-web.yaml
+  - pvc-mysql.yaml
+  - pvc-web.yaml
+  - service-mysql.yaml
+  - service-web.yaml
