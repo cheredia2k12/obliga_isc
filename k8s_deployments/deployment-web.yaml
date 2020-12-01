@@ -38,11 +38,11 @@ spec:
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
-#        volumeMounts:
-#        - mountPath: /var/www/html
-#          name: ecomm-persistent-storage
-#      restartPolicy: Always
-#      volumes:
-#      - name: ecomm-persistent-storage
-#        persistentVolumeClaim:
-#          claimName: wp-pv-claim
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: ecomm-persistent-storage
+      restartPolicy: Always
+      volumes:
+      - name: ecomm-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim
