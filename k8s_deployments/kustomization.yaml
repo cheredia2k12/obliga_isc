@@ -9,3 +9,4 @@ resources:
   - pvc-web.yaml
   - service-mysql.yaml
   - service-web.yaml
+  - hpa.yaml
