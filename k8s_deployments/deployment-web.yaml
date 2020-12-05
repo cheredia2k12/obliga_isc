@@ -9,10 +9,10 @@ spec:
   selector:
     matchLabels:
       app: ecomm
-#  template:
-#    metadata:
-#      labels:
-#        app: ecomm
+  template:
+    metadata:
+      labels:
+        app: ecomm
     spec:
       containers:
       - name: php-apache
