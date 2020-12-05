@@ -9,14 +9,18 @@ spec:
   selector:
     matchLabels:
       app: ecomm
+      tier: frontend
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: ecomm
+        tier: frontend
     spec:
       containers:
-      - name: php-apache
-        image: cheredia2k12/ecomm:latest
+      - image: cheredia2k12/ecomm:latest
+        name: ecomm
         imagePullPolicy: Always
         env:
         - name: DB_HOST
@@ -32,6 +36,7 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+          name: ecomm
         readinessProbe:
           tcpSocket:
             port: 80
@@ -43,8 +48,9 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 20
         volumeMounts:
-        - mountPath: /var/www/html
-          name: ecomm-persistent-storage
+        - name: ecomm-persistent-storage
+          mountPath: /var/www/html
+
 #      restartPolicy: Always
       volumes:
       - name: ecomm-persistent-storage

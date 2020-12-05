@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: ecomm-hpa
+  name: ecomm-web-hpa
   labels:
     app: ecomm
 spec:
@@ -9,6 +9,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: ecomm-deploy
-  minReplicas: 1
+  minReplicas: 3
   maxReplicas: 5
   targetCPUUtilizationPercentage: 50

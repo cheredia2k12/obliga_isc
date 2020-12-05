@@ -8,10 +8,14 @@ spec:
   selector:
     matchLabels:
       app: ecomm
+      tier: mysql
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: ecomm
+        tier: mysql
     spec:
       containers:
       - image: mysql:5.6
