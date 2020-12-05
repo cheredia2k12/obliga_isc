@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecomm-deploy
+  name: ecomm-web-deploy
   labels:
     app: ecomm
 spec:
@@ -9,10 +9,10 @@ spec:
   selector:
     matchLabels:
       app: ecomm
-  template:
-    metadata:
-      labels:
-        app: ecomm
+#  template:
+#    metadata:
+#      labels:
+#        app: ecomm
     spec:
       containers:
       - name: php-apache
@@ -42,11 +42,11 @@ spec:
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
-#        volumeMounts:
-#        - mountPath: /var/www/html
-#          name: ecomm-persistent-storage
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: ecomm-persistent-storage
 #      restartPolicy: Always
-#      volumes:
-#      - name: ecomm-persistent-storage
-#        persistentVolumeClaim:
-#          claimName: wp-pv-claim
+      volumes:
+      - name: ecomm-persistent-storage
+        persistentVolumeClaim:
+          claimName: php-pv-claim
