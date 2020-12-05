@@ -47,12 +47,3 @@ spec:
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
-        volumeMounts:
-        - name: ecomm-persistent-storage
-          mountPath: /var/www/html
-
-#      restartPolicy: Always
-      volumes:
-      - name: ecomm-persistent-storage
-        persistentVolumeClaim:
-          claimName: php-pv-claim
