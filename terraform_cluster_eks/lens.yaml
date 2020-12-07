@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lens
+  namespace: argocd
+spec:
+  destination:
+    namespace: lens
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: src/features/metrics
+    repoURL: https://github.com/cheredia2k12/lens.git
+    targetRevision: HEAD

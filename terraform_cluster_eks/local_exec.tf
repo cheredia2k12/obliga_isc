@@ -11,22 +11,19 @@ resource "null_resource" "update_kubeconfig" {
   provisioner "local-exec" {
     command = "kubectl apply -n argocd -f argocd_install.yaml"
   }
-#  provisioner "local-exec" {
-#    command = "kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'"
-#  }
- # provisioner "local-exec" {
- #   command = "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
- # }
- # provisioner "local-exec" {
- #   command = "sudo apt-get install apt-transport-https -y"
- # }
- # provisioner "local-exec" {
- #   command = "echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
- # }
- # provisioner "local-exec" {
- #   command = "sudo apt-get update -y && sudo apt-get install helm -y"
- # }
- # provisioner "local-exec" {
- #   command = "helm install --name prometheus stable/prometheus"
- # }
+  provisioner "local-exec" {
+    command = "kubectl create namespace e-commerce"
+  }
+  provisioner "local-exec" {
+    command = "kubectl create namespace lens-metrics"
+  }
+  provisioner "local-exec" {
+    command = "kubectl apply -f metric-server.yaml"
+  }
+  provisioner "local-exec" {
+    command = "kubectl apply -f application-argocd.yaml"
+  }
+  provisioner "local-exec" {
+    command = "kubectl apply -f application-lens.yaml"
+  }
 }

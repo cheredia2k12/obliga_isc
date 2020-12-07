@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecomm
+  namespace: argocd
+spec:
+  destination:
+    namespace: e-commerce
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: k8s_deployments
+    repoURL: https://github.com/cheredia2k12/obliga_isc.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
